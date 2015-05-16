@@ -7,10 +7,12 @@ import java.io.IOException;
 
 public class BasePacketCustom {
 	//PacketType
-
-	public static int PACKET_TYPE_HELLO = 1;
-	public static int PACKET_TYPE_SEND_STRING = 2;
 	
+	public static final int PACKET_TYPE_HELLO = 1;
+	public static final int PACKET_TYPE_SEND_STRING = 2;
+	public static final int PACKET_TYPE_GET_INFOR = 3;
+	public static final int PACKET_TYPE_SEND_INFOR = 4;
+	public static final int PACKET_TYPE_STOP_SERVER = 99;
 	
 	//Loai Packet
 	public int packetType;

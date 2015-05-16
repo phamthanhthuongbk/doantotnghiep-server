@@ -5,6 +5,8 @@ import java.net.DatagramPacket;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import net.thuong.execute.ClientStop;
+import net.thuong.execute.GetInfor;
 import net.thuong.packetcustom.BasePacketCustom;
 
 public class ProcessThread extends Thread {
@@ -79,6 +81,22 @@ public class ProcessThread extends Thread {
 		ThreadLog("Data Leng: " + packet.dataLeng);
 		ThreadLog("Data : " + new String(packet.data));
 		ThreadLog("\n");
+		
+		switch (packet.packetType) {
+		case BasePacketCustom.PACKET_TYPE_HELLO:
+			break;
+		case BasePacketCustom.PACKET_TYPE_SEND_STRING:
+			break;
+		case BasePacketCustom.PACKET_TYPE_GET_INFOR:
+			GetInfor.GetInfor(sendUDPThread);
+			break;
+		case BasePacketCustom.PACKET_TYPE_STOP_SERVER:
+			ClientStop.ClientStop();
+			break;
+		default:
+			break;
+		}
+		
 	}
 	
 }
