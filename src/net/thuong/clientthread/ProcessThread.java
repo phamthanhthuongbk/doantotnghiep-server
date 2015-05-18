@@ -7,12 +7,15 @@ import java.util.Queue;
 
 import net.thuong.execute.ClientStop;
 import net.thuong.execute.GetInfor;
+import net.thuong.execute.SendString;
 import net.thuong.packetcustom.BasePacketCustom;
+import net.thuong.ui.UIClient;
 
 public class ProcessThread extends Thread {
 
 	public SendUDPThread sendUDPThread;
 	private int numberPacket = 0;
+	public UIClient uiClient;
 	
 //	public ReceiveUDPThread receiveUDPThread;
 	private final Queue<BasePacketCustom> queue ; 
@@ -24,6 +27,9 @@ public class ProcessThread extends Thread {
 	
 	public void addQueue(BasePacketCustom packet) {
 //		System.out.print("\nHam add queue thuc thi");
+		
+
+		
 		synchronized (queue) {
 			// Add work to the queue
 			queue.add(packet);
@@ -38,6 +44,10 @@ public class ProcessThread extends Thread {
 	
 	@Override
 	public void run() {
+
+		uiClient = new UIClient(sendUDPThread);
+		uiClient.setVisible(true);
+		
 		while (true) {
 			try {
 				Runnable work = null;
@@ -83,9 +93,8 @@ public class ProcessThread extends Thread {
 		ThreadLog("\n");
 		
 		switch (packet.packetType) {
-		case BasePacketCustom.PACKET_TYPE_HELLO:
-			break;
 		case BasePacketCustom.PACKET_TYPE_SEND_STRING:
+			SendString.SendString(packet, uiClient);
 			break;
 		case BasePacketCustom.PACKET_TYPE_GET_INFOR:
 			GetInfor.GetInfor(sendUDPThread);

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
+import javax.swing.JFrame;
+
 import net.thuong.clienttest.TestSendUDP;
 import net.thuong.clientthread.ProcessThread;
 import net.thuong.clientthread.ReceiveUDPThread;
@@ -12,7 +14,7 @@ import net.thuong.packetcustom.BasePacketCustom;
 
 public class MainClient {
 	public static void main(String args[]) throws Exception {
-
+		
 		MainClient testSendUDP = new MainClient();
 		testSendUDP.createArpEntry();
 
@@ -29,14 +31,16 @@ public class MainClient {
 
 		sendUDPThread.setLogEnable(false);
 		receiveUDPThread.setLogEnable(false);
+
+		sendUDPThread.start();
 		
 		//thiet lap moi lien ket giua cac thread
 		processThread.sendUDPThread = sendUDPThread;
-		receiveUDPThread.processThread = processThread;
-		
-		sendUDPThread.start();
-		receiveUDPThread.start();
+
 		processThread.start();
+		
+		receiveUDPThread.processThread = processThread;
+		receiveUDPThread.start();
 
 		sendUDPThread.addQueue(new BasePacketCustom(BasePacketCustom.PACKET_TYPE_HELLO, "thuong123".getBytes()));
 //		sendUDPThread.addQueue(new BasePacketCustom(BasePacketCustom.PACKET_TYPE_SEND_STRING, "thuong".getBytes()));
