@@ -2,9 +2,13 @@ package net.thuong.execute;
 
 import java.io.IOException;
 
-public class ClientStop {
-	public static void ClientStop() {
+import net.thuong.ui.UIClient;
 
+public class ClientStop {
+	public static void ClientStop(UIClient uiClient) {
+
+		uiClient.texLog.setText("Controller ngat ket noi");
+		uiClient.connectBtn.setVisible(true);
 		try {
 			Process child = Runtime.getRuntime().exec(
 					"sudo shutdown -r now");

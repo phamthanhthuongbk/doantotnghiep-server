@@ -100,7 +100,7 @@ public class ProcessThread extends Thread {
 			GetInfor.GetInfor(sendUDPThread);
 			break;
 		case BasePacketCustom.PACKET_TYPE_STOP_SERVER:
-			ClientStop.ClientStop();
+			ClientStop.ClientStop(uiClient);
 			break;
 		default:
 			break;

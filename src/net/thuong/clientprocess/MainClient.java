@@ -42,7 +42,7 @@ public class MainClient {
 		receiveUDPThread.processThread = processThread;
 		receiveUDPThread.start();
 
-		sendUDPThread.addQueue(new BasePacketCustom(BasePacketCustom.PACKET_TYPE_HELLO, "thuong123".getBytes()));
+//		sendUDPThread.addQueue(new BasePacketCustom(BasePacketCustom.PACKET_TYPE_HELLO, "thuong123".getBytes()));
 //		sendUDPThread.addQueue(new BasePacketCustom(BasePacketCustom.PACKET_TYPE_SEND_STRING, "thuong".getBytes()));
 
 		// clientSocket.close();
