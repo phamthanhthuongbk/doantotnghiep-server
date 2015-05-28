@@ -18,7 +18,7 @@ public class MainClient {
 		MainClient testSendUDP = new MainClient();
 		testSendUDP.createArpEntry();
 
-		int port = 90;
+		int port = 6013;
 		byte[] ipAddr = new byte[] { 10, 0, 0, 99 };
 
 		InetAddress IPAddress = InetAddress.getByAddress(ipAddr);
